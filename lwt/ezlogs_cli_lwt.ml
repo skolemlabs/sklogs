@@ -17,7 +17,8 @@ module Line = struct
         fun () ->
           let m = Buffer.contents b in
           Buffer.reset b;
-          m )
+          m
+      )
     in
     let (out, out_flush) = buf_fmt ~like:ppf in
     let reporter = Logs_fmt.reporter ~pp_header ~app:out ~dst:out () in
@@ -54,7 +55,8 @@ module Json = struct
         fun () ->
           let m = Buffer.contents b in
           Buffer.reset b;
-          m )
+          m
+      )
     in
     let (out, out_flush) = buf_fmt ~like:ppf in
     let reporter = Ezlogs_cli.Json_output.reporter out in
@@ -95,9 +97,11 @@ let log_format default =
   let doc = "Log format" in
   let docv = "LOG_FORMAT" in
   Cmdliner.Arg.(
-    value & opt format_conv default & info [ "log-format" ] ~doc ~docv)
+    value & opt format_conv default & info [ "log-format" ] ~doc ~docv
+  )
 
 let logging ~default =
   let format = log_format default in
   Cmdliner.Term.(
-    const setup $ format $ Fmt_cli.style_renderer () $ Logs_cli.level ())
+    const setup $ format $ Fmt_cli.style_renderer () $ Logs_cli.level ()
+  )

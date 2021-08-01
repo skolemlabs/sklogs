@@ -24,7 +24,8 @@ module Line_output = struct
             let level =
               String.uppercase_ascii (Logs.level_to_string (Some level))
             in
-            Fmt.kpf k ppf "%s%s [%s] %s@." header timestamp level message)
+            Fmt.kpf k ppf "%s%s [%s] %s@." header timestamp level message
+            )
           fmt
       in
       msgf @@ fun ?(header = "") ?(tags = Logs.Tag.empty) fmt ->
@@ -52,7 +53,8 @@ module Json_output = struct
           let tag_string =
             Fmt.str "%a" (Logs.Tag.printer tag_definition) tag_value
           in
-          String_map.update name (fun _v -> Some (`String tag_string)) map)
+          String_map.update name (fun _v -> Some (`String tag_string)) map
+        )
       tags String_map.empty
 
   let json_fields_of_tags (tags : Logs.Tag.set) : Json.t String_map.t =
@@ -77,7 +79,8 @@ module Json_output = struct
       (fun () -> `String (Ecs.Epoch.to_timestamp (Ptime_clock.now ())))
       fields
     |> add_if_new "log.level" (fun () ->
-           `String (Logs.level_to_string (Some level)))
+           `String (Logs.level_to_string (Some level))
+       )
     |> add_if_new "log.logger" (fun () -> `String (Logs.Src.name src))
     (* Always include the log message *)
     |> replace "message" (`String message)
@@ -98,7 +101,8 @@ module Json_output = struct
               add_basic_fields ecs_fields level src message
             in
             let json : Json.t = `Assoc (String_map.bindings fields) in
-            Fmt.kpf k ppf "%s@." (Json.to_string json))
+            Fmt.kpf k ppf "%s@." (Json.to_string json)
+            )
           fmt
       in
       msgf @@ fun ?header ?(tags = Logs.Tag.empty) fmt ->
@@ -129,9 +133,11 @@ let log_format default =
   let doc = "Log format" in
   let docv = "LOG_FORMAT" in
   Cmdliner.Arg.(
-    value & opt format_conv default & info [ "log-format" ] ~doc ~docv)
+    value & opt format_conv default & info [ "log-format" ] ~doc ~docv
+  )
 
 let logging ~default =
   let format = log_format default in
   Cmdliner.Term.(
-    const setup $ format $ Fmt_cli.style_renderer () $ Logs_cli.level ())
+    const setup $ format $ Fmt_cli.style_renderer () $ Logs_cli.level ()
+  )
