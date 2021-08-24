@@ -215,6 +215,7 @@ module Trace : sig
   type t =
     | Trace_id of string
     | Transaction_id of string
+    | Span_id of string
 end
 module Url : sig
   (** {1 URL fields}

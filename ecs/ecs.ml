@@ -486,16 +486,19 @@ module Trace = struct
   type t =
     | Trace_id of string
     | Transaction_id of string
+    | Span_id of string
 
   let to_name (field : t) =
     match field with
     | Trace_id _ -> "trace.id"
     | Transaction_id _ -> "transaction.id"
+    | Span_id _ -> "span.id"
 
   let pp ppf (field : t) =
     match field with
     | Trace_id id
-    | Transaction_id id ->
+    | Transaction_id id 
+    | Span_id id ->
       Fmt.string ppf id
 
   let to_json (field : t) : Json.t = `String (Fmt.str "%a" pp field)
