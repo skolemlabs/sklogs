@@ -30,6 +30,7 @@ jobs:
 
       - run: opam pin add skapm.dev -n https://github.com/skolemlabs/skapm.git
       - run: opam pin add ecs.dev -n .
+      - run: opam pin add ecs-apm.dev -n .
       - run: opam pin add sklogs-cli.dev -n .
       - run: opam pin add sklogs-cli-lwt.dev -n .
       - run: opam depext -yt ecs sklogs-cli sklogs-cli-lwt
