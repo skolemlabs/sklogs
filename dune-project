@@ -1,13 +1,13 @@
 (lang dune 2.5)
 (using mdx 0.1)
 
-(name ezlogs-cli)
+(name sklogs-cli)
 
 (license Apache-2.0)
 (maintainers "Hezekiah M. Carty <hezekiah.carty@elastic.co>")
 (authors "Hezekiah M. Carty <hezekiah.carty@elastic.co>")
 
-(source (github hcarty/ezlogs-cli))
+(source (github skolemlabs/sklogs))
 
 (generate_opam_files true)
 
@@ -31,7 +31,7 @@
  (depends
   (ocaml (>= 4.08.0))
   (ecs (= :version))
-  (elastic-apm :build)
+  (skapm :build)
   (dune (>= 2.5.0))
   (fmt (>= 0.8.8))
   (logs (>= 0.7.0))
@@ -42,7 +42,7 @@
   (yojson (>= 1.6.0))))
 
 (package
- (name ezlogs-cli)
+ (name sklogs-cli)
  (synopsis "Simple, line-based and ECS-ready JSON Logs configuration")
  (depends
   (ocaml (>= 4.08.0))
@@ -57,11 +57,11 @@
   (yojson (>= 1.6.0))))
 
 (package
- (name ezlogs-cli-lwt)
+ (name sklogs-cli-lwt)
  (synopsis "Simple, line-based and ECS-ready JSON Logs configuration")
  (depends
   (ocaml (>= 4.08.0))
-  (ezlogs-cli (= :version))
+  (sklogs-cli (= :version))
   (dune (>= 2.5.0))
   (cmdliner (>= 1.0.4))
   (fmt (>= 0.8.8))
