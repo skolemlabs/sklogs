@@ -1,8 +1,7 @@
-name: CI checks
+name: CI
 
 on:
   - push
-  - pull_request
 
 jobs:
   build:
@@ -12,13 +11,9 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - macos-latest
           - ubuntu-latest
-          - windows-latest
         ocaml-version:
-          - 4.10.0 
-          #- 4.09.0
-          #- 4.08.1
+          - 4.11.1
 
     runs-on: ${{ matrix.os }}
 
@@ -27,14 +22,17 @@ jobs:
         uses: actions/checkout@master
 
       - name: Use OCaml ${{ matrix.ocaml-version }}
-        uses: avsm/setup-ocaml@v1.0.1
+        uses: avsm/setup-ocaml@v2
         with:
-          ocaml-version: ${{ matrix.ocaml-version }}
+          ocaml-compiler: ${{ matrix.ocaml-version }}
+          opam-depext: false
+          opam-pin: false
 
+      - run: opam pin add skapm.dev -n https://github.com/skolemlabs/skapm.git
       - run: opam pin add ecs.dev -n .
-      - run: opam pin add ezlogs-cli.dev -n .
-      - run: opam pin add ezlogs-cli-lwt.dev -n .
-      - run: opam depext -yt ecs ezlogs-cli ezlogs-cli-lwt
+      - run: opam pin add sklogs-cli.dev -n .
+      - run: opam pin add sklogs-cli-lwt.dev -n .
+      - run: opam depext -yt ecs sklogs-cli sklogs-cli-lwt
       - run: opam install -t . --deps-only
       - run: opam exec -- dune build
       - run: opam exec -- dune runtest
