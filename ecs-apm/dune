@@ -1,4 +1,4 @@
 (library
  (name ecs_apm)
  (public_name ecs-apm)
- (libraries ecs elastic-apm))
+ (libraries ecs skapm))

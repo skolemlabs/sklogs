@@ -4,8 +4,8 @@ synopsis: "Elastic Common Scheme (ECS) field library"
 maintainer: ["Hezekiah M. Carty <hezekiah.carty@elastic.co>"]
 authors: ["Hezekiah M. Carty <hezekiah.carty@elastic.co>"]
 license: "Apache-2.0"
-homepage: "https://github.com/hcarty/ezlogs-cli"
-bug-reports: "https://github.com/hcarty/ezlogs-cli/issues"
+homepage: "https://github.com/skolemlabs/sklogs"
+bug-reports: "https://github.com/skolemlabs/sklogs/issues"
 depends: [
   "ocaml" {>= "4.08.0"}
   "dune" {>= "2.5.0"}
@@ -31,4 +31,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://github.com/hcarty/ezlogs-cli.git"
+dev-repo: "git+https://github.com/skolemlabs/sklogs.git"

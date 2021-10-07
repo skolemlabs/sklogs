@@ -1,4 +1,4 @@
 (library
- (name ezlogs_cli_lwt)
- (public_name ezlogs-cli-lwt)
- (libraries ezlogs-cli logs.lwt lwt.unix))
+ (name sklogs_cli_lwt)
+ (public_name sklogs-cli-lwt)
+ (libraries sklogs-cli logs.lwt lwt.unix))

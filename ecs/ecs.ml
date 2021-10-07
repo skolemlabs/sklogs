@@ -497,7 +497,7 @@ module Trace = struct
   let pp ppf (field : t) =
     match field with
     | Trace_id id
-    | Transaction_id id 
+    | Transaction_id id
     | Span_id id ->
       Fmt.string ppf id
 
