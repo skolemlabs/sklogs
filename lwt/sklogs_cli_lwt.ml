@@ -6,7 +6,7 @@ module Line = struct
     Fmt.pf fmt "%04d-%02d-%02d %02d:%02d:%02d " (tm_year + 1900) (tm_mon + 1)
       tm_mday tm_hour tm_min tm_sec
 
-  let pp_header =
+  let[@warning "-3"] pp_header =
     Fmt.suffix Fmt.(const string " ") @@ Fmt.prefix now_fmt Logs_fmt.pp_header
 
   let reporter ppf =
