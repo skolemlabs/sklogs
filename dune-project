@@ -29,9 +29,9 @@
  (name ecs-apm)
  (synopsis "Helper library for APM integration with ECS")
  (depends
+  skapm
   (ocaml (>= 4.08.0))
   (ecs (= :version))
-  (skapm :build)
   (dune (>= 2.5.0))
   (fmt (>= 0.8.8))
   (logs (>= 0.7.0))
