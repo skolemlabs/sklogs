@@ -11,6 +11,8 @@
 
 (generate_opam_files true)
 
+(version 1.0.1)
+
 (package
  (name ecs)
  (synopsis "Elastic Common Scheme (ECS) field library")
